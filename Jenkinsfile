@@ -1,13 +1,13 @@
 ﻿pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "sabarishselva23/ShoppingCart:latest"
+        DOCKER_IMAGE = "sabarishselva23/shoppingcart:latest"
     }
     stages {
         stage("Clone Repository") {
             steps {
                 git branch: "main",
-                    url: "https://github.com/Tythebuilder/ShoppingCart.git"
+                    url: "https://github.com/Tythebuilder/shoppingcart.git"
             }
         }
         stage("Build with Maven") {
@@ -33,7 +33,7 @@
         stage("Deploy to Kubernetes") {
             steps {
                 bat "kubectl apply -f deployment.yaml"
-                bat "kubectl rollout restart deployment/ShoppingCart"
+                bat "kubectl rollout restart deployment/shoppingcart"
             }
         }
     }
